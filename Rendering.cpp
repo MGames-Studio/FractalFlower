@@ -3,9 +3,11 @@
 #include "PlantRenderer.h"
 #include "vector2d.h"
 #include "Plant.h"
+#include "font.h"
+#include "Debug.h"
 #include "UI/UIManager.h"
 #include "UI/UIButton.h"
-
+#include <cstdio>
 
 
 
@@ -15,11 +17,8 @@ Plant testPlant = Plant();
 void StartRenderer(SDL_Window* win)
 {
     testPlant.RandomPlant();
-    UIButton testbutton = UIButton();
-    testbutton.rect.w=100;
-    testbutton.rect.h=100;
-    testbutton.color.a=255;
-    AddUIObject(testbutton);
+    *Debug_Float1() =0;
+    
 	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
 
 }
@@ -30,7 +29,7 @@ void RenderScreen(float const &delta){
 
     SDL_SetRenderDrawColor( renderer, 110, 110, 110, 255 );
 
-
+    testPlant.angleDifference = *Debug_Float1();
     DrawPlant(&testPlant,3.14);
 
 
@@ -41,6 +40,7 @@ void RenderScreen(float const &delta){
 
 void ExitRenderer()
 {
+    ResetUIObjects();
 
 	SDL_DestroyRenderer(renderer);
 }
@@ -72,6 +72,28 @@ void DrawRect(SDL_Rect const& rect, SDL_Color const& color)
 {
 
      SDL_SetRenderDrawColor( renderer, color.r, color.g,color.b, 255 );
-     SDL_RenderDrawRect(renderer,&rect);
+
+    
+     SDL_RenderFillRect(renderer,&rect);
+
 }
+void DrawText(char const* text,vector2d const& pos ,SDL_Color const& color)
+{
+    SDL_SetRenderDrawColor( renderer, color.r, color.g,color.b, 255 );
+
+    for (char* it = text; *it; ++it)
+    {
+        unsigned char* fontLetter;
+        GetLetterFromFont(*it,fontLetter);
+       
+    }
+
+
+}
+void DrawLetter(char letter[FONT_HIGHT], vector2d const& pos)
+{
+
+
+}
+
 

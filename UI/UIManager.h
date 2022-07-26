@@ -7,9 +7,11 @@ void DrawUI();
 void UpdateUI();
 
 void AddUIObject(UIObject & obj);
-void RemoveUIObject();
+void RemoveUIObject(UIObject &obj);
+void ResetUIObjects();
 
-void HandleClickUI();
+void HandleClickUI(vector2d const& pos);
+bool IsInside(vector2d const& pos,SDL_Rect const& rect);
 
  
 

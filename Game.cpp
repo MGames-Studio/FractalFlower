@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "Rendering.h"
+#include "UI/UIManager.h"
+#include "Debug.h"
 #include <stdio.h>
 
 
@@ -8,8 +10,9 @@ bool quitApplication =false;
 void StartGame(SDL_Window* win)
 {
 
-	
 	StartRenderer(win);
+	InitializeDebug();
+	
 	Uint32 lastTicks = 0;
 	while(!quitApplication)
 	{
@@ -39,6 +42,9 @@ void ProcessEvents()
 	{
 		if(event.type == SDL_QUIT)
 			quitApplication = true;
+		else if(event.type == SDL_MOUSEBUTTONDOWN)
+			HandleClickUI(vector2d(event.button.x,event.button.y));
+
 
 	}
 

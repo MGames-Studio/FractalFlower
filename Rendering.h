@@ -10,3 +10,4 @@ void RenderScreen(float const &delta);
 void ExitRenderer();
 void DrawLine( vector2d start, vector2d direction,SDL_Color color,float thickness=1);
 void DrawRect(SDL_Rect const& rect, SDL_Color const& color);
+void DrawText(const char* text,vector2d const& pos ,SDL_Color const& color);
