@@ -5,8 +5,9 @@
 
 void UIButton::Render()
 {
-
 	DrawRect(rect,color);
+	DrawRect(rect,SDL_Color(),false);
+
 }
 void UIButton::Update()
 {
@@ -17,8 +18,4 @@ void UIButton::Clicked(vector2d relativePosition)
 {
 	if(onClick)
 		onClick();
-}
-void UIButton::ReleasedMouse()
-{
-
 }

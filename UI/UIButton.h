@@ -14,7 +14,7 @@ public:
 	void Render() override;
 	void Update() override;
 	void Clicked(vector2d relativePosition) override;
-	void ReleasedMouse() override; //called on all the objects on mouse release
+
 
 
 };

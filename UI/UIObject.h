@@ -16,7 +16,6 @@ public:
 	virtual void Render()=0 ;
 	virtual void Update() ;
 	virtual void Clicked(vector2d relativePosition) ;
-	virtual void ReleasedMouse() ; //called on all the objects on mouse release
 
 
 

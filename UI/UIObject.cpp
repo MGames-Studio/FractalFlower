@@ -13,7 +13,4 @@ void UIObject::Clicked(vector2d relativePosition)
 {
 
 }
-void UIObject::ReleasedMouse()
-{
 
-}
