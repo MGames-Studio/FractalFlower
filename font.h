@@ -4,7 +4,7 @@
 #define FONT_HIGHT 12
 
 
-extern const unsigned char terminal_8pt[];
+extern const  char terminal_8pt[];
 
-void GetLetterFromFont(char const& character,unsigned char* returns);
+const char* GetLetterFromFont(const char * character);
 

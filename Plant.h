@@ -9,8 +9,8 @@ class Plant
 public:
 	
 	float angleDifference =1; 
-	float startSize =1.5;
-	float sizeDifference=0.1;
+	float startSize =0.8;
+	float sizeDifference=0.05;
 	Uint16 colors=102;
 	Uint8 colorsPeriod =1;
 	Uint8 branches =1;

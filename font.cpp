@@ -6,6 +6,7 @@
 
 #include "font.h"
 #include <stdint.h>
+#include <cstdio>
 
 
 // 
@@ -15,15 +16,17 @@
 // data = terminal_8pt[hight*offset]
 // 
 
-void GetLetterFromFont(char * character,unsigned char* returns)
+const char* GetLetterFromFont(const char * character)
 {
 	int offset = int(*character) - int(' ');
-	returns = &terminal_8pt[FONT_HIGHT * offset];
+	
+	const char* returns = &terminal_8pt[FONT_HIGHT * offset];
+	return returns;
 
 }
 
 
-const unsigned char terminal_8pt[] = {
+const char terminal_8pt[] = {
 	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, // Character 0x20 (32: ' ')
 	0x00,0x04,0x04,0x04,0x04,0x04,0x04,0x00,0x04,0x04,0x00,0x00, // Character 0x21 (33: '!')
 	0x0A,0x0A,0x0A,0x0A,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00, // Character 0x22 (34: '"')

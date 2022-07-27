@@ -8,6 +8,7 @@
 #include "UI/UIManager.h"
 #include "UI/UIButton.h"
 #include <cstdio>
+#include <cstring>
 
 
 
@@ -32,7 +33,7 @@ void RenderScreen(float const &delta){
     testPlant.angleDifference = *Debug_Float1();
     DrawPlant(&testPlant,3.14);
 
-
+    DrawText("i can write pretty long sentences, and i think its veeery cool!!!",vector2d(290,300),SDL_Color{0,00,00},true);
     DrawUI();
 
     SDL_RenderPresent(renderer);
@@ -68,32 +69,57 @@ void DrawLine( vector2d start, vector2d direction,SDL_Color color,float thicknes
         
 
 }
-void DrawRect(SDL_Rect const& rect, SDL_Color const& color)
+void DrawRect(SDL_Rect const& rect, SDL_Color const& color,bool filled)
 {
 
      SDL_SetRenderDrawColor( renderer, color.r, color.g,color.b, 255 );
 
-    
-     SDL_RenderFillRect(renderer,&rect);
+    if(filled)
+        SDL_RenderFillRect(renderer,&rect);
+    else
+        SDL_RenderDrawRect(renderer,&rect);
 
 }
-void DrawText(char const* text,vector2d const& pos ,SDL_Color const& color)
+void DrawLetter(const char* letter, vector2d pos)
+{
+    for (int i = 0; i < FONT_HIGHT; ++i)
+    {
+
+        for (int j = 0; j < FONT_WIDTH; ++j)
+        {
+            
+
+            if((letter[i] >> j) & 1)
+            {
+                SDL_RenderDrawPoint(renderer,pos.x+j,pos.y+i);
+            }
+        }
+    }
+
+}
+void DrawText(char const* text,vector2d pos ,SDL_Color const& color, bool ceneter)
 {
     SDL_SetRenderDrawColor( renderer, color.r, color.g,color.b, 255 );
 
-    for (char* it = text; *it; ++it)
+    if(ceneter)
     {
-        unsigned char* fontLetter;
-        GetLetterFromFont(*it,fontLetter);
+        pos.x -= int((float(strlen(text))/2)*FONT_WIDTH);
+        pos.y -= FONT_HIGHT/2;
+    }
+
+    const char* it =text;
+    for (int i=0; *(it+i); ++i)
+    {
+        const char* fontLetter = GetLetterFromFont(it+i);
+        
+       
+        vector2d newPos = pos+vector2d(FONT_WIDTH*i,0);
+        DrawLetter(fontLetter,newPos);
        
     }
 
 
 }
-void DrawLetter(char letter[FONT_HIGHT], vector2d const& pos)
-{
 
-
-}
 
 
