@@ -34,9 +34,9 @@ void DrawBranch(Plant* plant,vector2d startPosition, float startAngle,float size
 
 	if(depth<10)
 	{
-		DrawBranch(plant,startPosition+direction,startAngle+plant->angleDifference,size-plant->sizeDifference,depth+1);
+		DrawBranch(plant,startPosition+direction,startAngle+plant->angleDifference,size*plant->sizeDifference,depth+1);
 		//DrawBranch(plant,startPosition+direction,startAngle,size-plant->sizeDifference,depth+1);
-		DrawBranch(plant,startPosition+direction,startAngle-plant->angleDifference,size-plant->sizeDifference,depth+1);
+		DrawBranch(plant,startPosition+direction,startAngle-plant->angleDifference,size*plant->sizeDifference,depth+1);
 	}
 
 }

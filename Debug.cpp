@@ -3,6 +3,7 @@
 #include "Plant.h"
 #include "UI/UIManager.h"
 #include "UI/UIButton.h"
+#include "UI/UISlider.h"
 #include <cstdio>
 
 int debugI1, debugI2;
@@ -12,14 +13,7 @@ float debugF1, debugF2;
 void InitializeDebug()
 {
 
-	UIButton* testbutton =new UIButton();
-    testbutton->rect.w=100;
-    testbutton->rect.h=50;
-    testbutton->rect.x=10;
-    testbutton->rect.y=10;
-    testbutton->color.g=255;
-    testbutton->onClick =&Debug_Func1;
-    AddUIObject(*testbutton);
+
 
 }
 

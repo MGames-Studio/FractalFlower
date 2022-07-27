@@ -29,7 +29,7 @@ void Update(float const &delta)
 	ProcessEvents();
 	RenderScreen(delta);
 
-
+	UpdateUI();
 	
 }
 

@@ -7,6 +7,7 @@
 #include "Debug.h"
 #include "UI/UIManager.h"
 #include "UI/UIButton.h"
+#include "UI/UISlider.h"
 #include <cstdio>
 #include <cstring>
 
@@ -18,23 +19,64 @@ Plant testPlant = Plant();
 void StartRenderer(SDL_Window* win)
 {
     testPlant.RandomPlant();
-    *Debug_Float1() =0;
+    testPlant.branches=5;
     
 	renderer = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED);
+
+    SDL_Color green = SDL_Color{0,200,0};
+
+    UISlider* angleSlider = new UISlider(testPlant.angleDifference);
+    angleSlider->rect.x =20;
+    angleSlider->rect.w=100;
+    angleSlider->rect.y =20;
+    angleSlider->rect.h=20;
+    angleSlider->maxValue=7;
+    angleSlider->color=green;
+    AddUIObject(*angleSlider);
+
+    UISlider* sizeSlider = new UISlider(testPlant.sizeDifference);
+    sizeSlider->rect.x =20;
+    sizeSlider->rect.w=100;
+    sizeSlider->rect.y =50;
+    sizeSlider->rect.h=20;
+    sizeSlider->minValue =0;
+    sizeSlider->maxValue=1;
+    sizeSlider->color=green;
+    AddUIObject(*sizeSlider);
+
+    UISlider* startSlider = new UISlider(testPlant.startSize);
+    startSlider->rect.x =20;
+    startSlider->rect.w=100;
+    startSlider->rect.y =80;
+    startSlider->rect.h=20;
+    startSlider->minValue =0;
+    startSlider->maxValue=1;
+    startSlider->color=green;
+    AddUIObject(*startSlider);
+
+    UIButton* randomButton = new UIButton();
+    randomButton->rect.x =20;
+    randomButton->rect.w=100;
+    randomButton->rect.y=110;
+    randomButton->rect.h = 20;
+    randomButton->color=green;
+    randomButton->onClick = std::bind(&Plant::RandomPlant,&testPlant);
+    AddUIObject(*randomButton);
 
 }
 
 void RenderScreen(float const &delta){
-	SDL_SetRenderDrawColor( renderer, 50, 50, 100, 255 );
+	SDL_SetRenderDrawColor( renderer, 30, 30, 100, 255 );
     SDL_RenderClear( renderer );
 
-    SDL_SetRenderDrawColor( renderer, 110, 110, 110, 255 );
 
-    testPlant.angleDifference = *Debug_Float1();
+   
+
+    
     DrawPlant(&testPlant,3.14);
 
-    DrawText("i can write pretty long sentences, and i think its veeery cool!!!",vector2d(290,300),SDL_Color{0,00,00},true);
     DrawUI();
+    DrawText("random",vector2d(70,120),SDL_Color(),true);
 
     SDL_RenderPresent(renderer);
 }
@@ -69,8 +111,14 @@ void DrawLine( vector2d start, vector2d direction,SDL_Color color,float thicknes
         
 
 }
-void DrawRect(SDL_Rect const& rect, SDL_Color const& color,bool filled)
+void DrawRect(SDL_Rect  rect, SDL_Color const& color,bool filled,bool ceneter)
 {
+    if(ceneter)
+    {
+        rect.x-=rect.w/2;
+        rect.y-=rect.h/2;
+
+    }
 
      SDL_SetRenderDrawColor( renderer, color.r, color.g,color.b, 255 );
 

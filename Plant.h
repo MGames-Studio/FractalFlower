@@ -32,7 +32,7 @@ public:
 
 	}};
 
-	Plant* RandomPlant();
+	void RandomPlant();
 
 
 
