@@ -17,9 +17,9 @@ vector2d::vector2d(int _x,int _y){
 	y = _y;
 
 }
-vector2d vector2d::operator +(vector2d const &other){	return vector2d(x+other.x,y+other.y); }
-vector2d vector2d::operator -(vector2d const &other){	return vector2d(x-other.x,y-other.y); }
-vector2d vector2d::operator *(float const &other){	return vector2d(x*other,y*other); }
+vector2d vector2d::operator +(vector2d const &other)const{	return vector2d(x+other.x,y+other.y); }
+vector2d vector2d::operator -(vector2d const &other)const{	return vector2d(x-other.x,y-other.y); }
+vector2d vector2d::operator *(float const &other)const{	return vector2d(x*other,y*other); }
 
 
 float vector2d::AngleBetween(vector2d other)
